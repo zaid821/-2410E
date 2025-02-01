@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="myForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <br><br>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+        <br><br>
+        
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age">
+        <br><br>
+        
+        <input type="submit" value="Submit">
+      </form>
+      
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://cdn.rawgit.com/jquery-validation/jquery-validation/v1.19.3/dist/jquery.validate.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+    
+    $("#myForm").validate(
+        
+    {
+       
+        rules: {
+          name: {
+            required: true,  // This field is required
+            minlength: 3     // The name should be at least 3 characters
+          },
+          email: {
+            required: true,  // This field is required
+            email: true      // This must be a valid email
+          },
+          age: {
+            required: true,  // This field is required
+            digits: true,    // Only digits are allowed
+            min: 18          // The age must be at least 18
+          }
+        },
+  
+        messages: {
+          name: {
+            required: "Please enter your name.",
+            minlength: "Your name must be at least 3 characters long."
+          },
+          email: {
+            required: "Please enter your email.",
+            email: "Please enter a valid email address."
+          },
+          age: {
+            required: "Please enter your age.",
+            digits: "Only digits are allowed for age.",
+            min: "You must be at least 18 years old."
+          }
+        },
+       
+        submitHandler: function(form) {
+          // If the form is valid, this will be triggered
+          alert("Form is valid! Now submitting...");
+          form.submit(); // Submit the form
+        }
+      });
+    }
+
+
+);
+    </script>
+    
+
+
+</html>
